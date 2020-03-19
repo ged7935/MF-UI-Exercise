@@ -1,0 +1,15 @@
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+        <div class="form-row">
+            <div class="form-group col-12">
+                <label for="username" class="font-weight-bold">User Name</label>
+                <input id="username" type="text" formControlName="username" class="form-control" [ngClass]="isInvalidUsername ? 'border border-danger' : ''" required/>
+                
+            </div>
+        </div>
+        <span *ngIf="isInvalidUsername" class="text-danger">
+            Not a valid user name!
+        </span>
+        <button class="btn btn-primary float-right" type="submit" [disabled]="!loginForm.valid">Log In</button>
+    </form>   
+</div>

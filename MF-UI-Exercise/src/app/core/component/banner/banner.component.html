@@ -1,0 +1,43 @@
+<div class="row px-3 py-2 mb-3 border-bottom" [ngSwitch]="page">
+    <ng-container *ngSwitchCase="'Home'">
+        <div class="col-6">
+            <span class="banner-title">Home</span>   
+        </div>
+        <div class="col-6">
+            <ng-container *ngIf="user">
+                <button class="btn btn-primary float-right ml-3" (click)="logOut()">Log Out</button>
+                <button class="btn btn-success float-right ml-4" (click)="newPost()">New Post</button>
+                <span class="text-dark float-right">Welcome, {{user.name}}!</span>
+            </ng-container>
+            <ng-container *ngIf="!user">
+                <button class="btn btn-primary float-right ml-4" (click)="logIn()">Log In</button>
+                <span class="text-dark float-right">You are not logged in</span>
+            </ng-container>
+        </div>
+    </ng-container>  
+    <ng-container *ngSwitchCase="'LogIn'">
+        <div class="col-12">
+            <span class="banner-title">Log In</span> 
+        </div>
+    </ng-container>  
+    <ng-container *ngSwitchCase="'NewPost'">
+        <div class="col-6">
+            <span class="mr-4 banner-title">New Post</span> 
+            <a class="text-primary pointer" role="button" (click)="home()"><u>Go back to Home page</u></a>  
+        </div>
+        <div class="col-6">
+            <span class="text-dark float-right">Welcome, {{user.name}}!</span>  
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'EditPost'">
+        <div class="col-6">
+            <span class="mr-4 banner-title">Edit Post</span> 
+            <a class="text-primary pointer" role="button" (click)="home()"><u>Go back to Home page</u></a>   
+        </div>
+        <div class="col-6">
+            <span class="text-dark float-right">Welcome, {{user.name}}!</span>  
+        </div>
+    </ng-container>    
+</div>
+
+

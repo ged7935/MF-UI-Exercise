@@ -1,0 +1,41 @@
+<div class="container-fluid">    
+    <ng-container [ngSwitch]="bannerType">
+        <div *ngSwitchCase="'ADD'" class="alert alert-success col" role="alert">
+            A new post was saved successfully
+        </div>
+        <div *ngSwitchCase="'UPDATE'" class="alert alert-success col" role="alert">
+            Post was updated successfully
+        </div>
+        <div *ngSwitchCase="'DELETE'"class="alert alert-success col" role="alert">
+            Post was deleted successfully
+        </div> 
+    </ng-container>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">User</th>
+                <th scope="col">Post</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let up of displayedPosts">  
+                <td>
+                    <p>{{up.user.name}}</p>
+                    <p><u><a href="https://www.{{up.user.website}}">{{up.user.company.name}}</a></u></p>
+                </td>
+                <td>
+                    <h4>
+                        <u *ngIf="currentUser?.id === up.user.id"><a routerLink="post/{{up.id}}">{{up.title}}</a></u>
+                        <span *ngIf="currentUser?.id !== up.user.id">{{up.title}}</span>
+                    </h4>
+                    <div>{{up.body}}</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>    
+    <div class="float-right">
+        <div class="arrow-left mr-4" [ngClass]="prevDisabled ? 'disabled' : 'pointer'" (click)="prev()"></div>
+        <div class="arrow-right" [ngClass]="nextDisabled ? 'disabled' : 'pointer'" (click)="next()"></div>
+    </div>
+</div>
